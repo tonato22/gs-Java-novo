@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-<<<<<<< HEAD
-    <file url="file://$PROJECT_DIR$/gs-Java-novo-main/src/main/java" charset="UTF-8" />
-=======
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
->>>>>>> b184832bcd3ea96659c9279c589860e62d93be05
   </component>
 </project>

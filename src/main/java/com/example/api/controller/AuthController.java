@@ -3,7 +3,10 @@ package com.example.api.controller;
 import com.example.api.model.Usuario;
 import com.example.api.repository.UsuarioRepository;
 import com.example.api.security.JwtUtil;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -55,5 +58,17 @@ public class AuthController {
         } else {
             throw new RuntimeException("Credenciais inválidas");
         }
+    }
+
+
+    @PostMapping("/register")
+    public ResponseEntity<?> registrar(@RequestBody @Valid Usuario usuario) {
+        // Verifica se já existe um usuário com o mesmo email
+        if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email já cadastrado");
+        }
+
+        Usuario salvo = usuarioRepository.save(usuario);
+        return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
     }
 }
